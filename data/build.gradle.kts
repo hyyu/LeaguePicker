@@ -1,20 +1,16 @@
 plugins {
-    alias(libs.plugins.application.plugin)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android.plugin)
 }
 
 android {
-    namespace = "fr.arrows.leaguepicker"
+    namespace = "fr.arrows.leaguepicker.data"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "fr.arrows.leaguepicker"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -26,9 +22,15 @@ android {
             )
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
-    /* Core */
     implementation(libs.androidx.core.ktx)
 }

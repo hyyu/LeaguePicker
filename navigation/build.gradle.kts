@@ -1,20 +1,16 @@
 plugins {
-    alias(libs.plugins.application.plugin)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android.plugin)
 }
 
 android {
-    namespace = "fr.arrows.leaguepicker"
+    namespace = "fr.arrows.navigation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "fr.arrows.leaguepicker"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -29,6 +25,5 @@ android {
 }
 
 dependencies {
-    /* Core */
     implementation(libs.androidx.core.ktx)
 }
