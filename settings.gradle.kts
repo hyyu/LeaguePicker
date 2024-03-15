@@ -22,5 +22,11 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "League Picker"
-include(":app")
-include(":ui:home")
+
+include(
+    ":app",
+    ":data",
+    ":domain",
+    ":navigation",
+    ":ui:home"
+)
