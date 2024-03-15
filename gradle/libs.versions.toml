@@ -9,4 +9,4 @@ androidx_core_ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 [plugins]
 application_plugin = { id = "com.android.application", version.ref = "gradle_plugin" }
 kotlin_android_plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-android_library = { id = "com.android.library", version.ref = "gradle_plugin" }
+android_library_plugin = { id = "com.android.library", version.ref = "gradle_plugin" }
