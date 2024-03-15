@@ -48,4 +48,17 @@ android_library_plugin = { id = "com.android.library", version.ref = "gradle_plu
 
 # Kotlin Android
 kotlin_android_plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-android_library_plugin = { id = "com.android.library", version.ref = "gradle_plugin" }
+
+# Ksp
+ksp_plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+# Hilt
+hilt_plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+[bundles]
+
+# Compose
+compose = [
+    "compose_ui",
+    "compose_material3"
+]
