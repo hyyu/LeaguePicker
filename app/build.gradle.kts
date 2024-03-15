@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.application.plugin)
     alias(libs.plugins.kotlin.android.plugin)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
@@ -29,6 +31,16 @@ android {
 }
 
 dependencies {
-    /* Core */
+    /* Core Ktx */
     implementation(libs.androidx.core.ktx)
+
+    /* Hilt */
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
+
+    /* Compose */
+    implementation(libs.bundles.compose)
+
+    /* Google Material themes */
+    implementation(libs.material)
 }
