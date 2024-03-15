@@ -39,6 +39,13 @@ compose_material3 = { module = "androidx.compose.material3:material3", version.r
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
+
+# Android application
 application_plugin = { id = "com.android.application", version.ref = "gradle_plugin" }
+
+# Android library
+android_library_plugin = { id = "com.android.library", version.ref = "gradle_plugin" }
+
+# Kotlin Android
 kotlin_android_plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android_library_plugin = { id = "com.android.library", version.ref = "gradle_plugin" }
