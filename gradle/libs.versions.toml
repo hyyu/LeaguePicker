@@ -1,7 +1,26 @@
 [versions]
+
+# AGP
 gradle_plugin = "8.3.0"
-kotlin = "1.9.22"
+
+# Kotlin
+kotlin = "1.9.23"
+
+# Ksp
+ksp = "1.9.23-1.0.19"
+
+# Core Ktx
 core_ktx = "1.12.0"
+
+# Hilt
+hilt = "2.47"
+
+# Compose
+compose = '1.6.3'
+material3 = '1.2.1'
+
+# Material
+material = "1.11.0"
 
 [libraries]
 androidx_core_ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core_ktx" }
