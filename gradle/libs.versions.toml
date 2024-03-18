@@ -28,7 +28,8 @@ core_ktx = "1.12.0"
 ktor = "2.3.9"
 
 # Compose
-compose = '1.6.3'
+compose = "1.6.3"
+compose_material3 = "1.2.1"
 
 # Material
 material = "1.11.0"
@@ -54,7 +55,7 @@ ktor_serialization_kotlinx_json = { group = "io.ktor", name = "ktor-serializatio
 # Compose
 compose_ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose_google_fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "compose" }
-compose_material3 = { module = "androidx.compose.material3:material3", version.ref = "compose" }
+compose_material3 = { module = "androidx.compose.material3:material3", version.ref = "compose_material3" }
 
 # Material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
