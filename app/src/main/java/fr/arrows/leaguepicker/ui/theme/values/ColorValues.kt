@@ -1,4 +1,4 @@
-package fr.arrows.leaguepicker.theme
+package fr.arrows.leaguepicker.ui.theme.values
 
 object ColorValues {
     const val BEIGE_10 = 0xFF2A1800

@@ -1,4 +1,4 @@
-package fr.arrows.leaguepicker.theme
+package fr.arrows.leaguepicker.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -58,7 +58,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun MajorTheme(
+fun LeaguePickerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

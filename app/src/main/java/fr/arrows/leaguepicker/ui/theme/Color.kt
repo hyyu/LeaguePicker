@@ -1,6 +1,7 @@
-package fr.arrows.leaguepicker.theme
+package fr.arrows.leaguepicker.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import fr.arrows.leaguepicker.ui.theme.values.ColorValues
 
 val Beige10 = Color(ColorValues.BEIGE_10)
 val Beige20 = Color(ColorValues.BEIGE_20)
