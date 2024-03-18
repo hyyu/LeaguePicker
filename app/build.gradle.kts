@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.application.plugin)
     alias(libs.plugins.kotlin.android.plugin)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
@@ -13,8 +15,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,9 +26,28 @@ android {
             )
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
 }
 
 dependencies {
-    /* Core */
+    /* Core Ktx */
     implementation(libs.androidx.core.ktx)
+
+    /* Hilt */
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
+
+    /* Compose */
+    implementation(libs.bundles.compose)
+
+    /* Google Material themes */
+    implementation(libs.material)
 }
