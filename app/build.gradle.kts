@@ -47,7 +47,9 @@ android {
 
 dependencies {
 
+    /* Modules to import */
     implementation(project(":navigation"))
+    implementation(project(":ui:home"))
 
     /* Core Ktx */
     implementation(libs.androidx.core.ktx)
