@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android.plugin)
     alias(libs.plugins.hilt.plugin)
     alias(libs.plugins.ksp.plugin)
+    alias(libs.plugins.detekt.plugin)
 }
 
 android {
@@ -38,6 +39,9 @@ android {
 }
 
 dependencies {
+    /* Detekt rules for compose */
+    detektPlugins(libs.detekt.rules.compose)
+
     /* Core Ktx */
     implementation(libs.androidx.core.ktx)
 
