@@ -14,7 +14,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     defaultConfig {
@@ -53,10 +53,14 @@ dependencies {
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
 
+    /* Google Material themes */
+    implementation(libs.material)
+
     /* Compose */
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.tooling)
 
-    /* Google Material themes */
-    implementation(libs.material)
+    /* Lifecycle */
+    implementation(libs.lifecycle.runtime.ktx)
 }
