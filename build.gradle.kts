@@ -5,5 +5,4 @@ plugins {
     alias(libs.plugins.android.library.plugin) apply false
     alias(libs.plugins.hilt.plugin) apply false
     alias(libs.plugins.ksp.plugin) apply false
-    alias(libs.plugins.detekt.plugin) apply false
 }
