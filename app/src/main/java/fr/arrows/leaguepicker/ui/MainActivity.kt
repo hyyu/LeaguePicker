@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import fr.arrows.leaguepicker.home.compose.Home
 import fr.arrows.leaguepicker.navigation.Screen
 import fr.arrows.leaguepicker.ui.theme.LeaguePickerTheme
 
@@ -41,9 +42,8 @@ class MainActivity : ComponentActivity() {
             startDestination = Screen.Home.value
         ) {
             composable(Screen.Home.value) {
-
+                Home()
             }
         }
     }
-
 }
