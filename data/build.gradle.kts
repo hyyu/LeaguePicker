@@ -3,6 +3,9 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.library.plugin)
     alias(libs.plugins.kotlin.android.plugin)
+    alias(libs.plugins.kotlin.serialization.plugin)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
@@ -48,5 +51,13 @@ android {
 }
 
 dependencies {
+    /* Core Ktx */
     implementation(libs.androidx.core.ktx)
+
+    /* Hilt */
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
+
+    /* Ktor */
+    implementation(libs.bundles.ktor.client)
 }
