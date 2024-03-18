@@ -12,7 +12,9 @@ android {
     namespace = "fr.arrows.leaguepicker.data"
     compileSdk = 34
 
-    buildFeatures.buildConfig = true
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         minSdk = 28

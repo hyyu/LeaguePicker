@@ -1,87 +1,105 @@
 [versions]
 
 # AGP
-gradle_plugin = "8.3.0"
+gradlePlugin = "8.3.0"
 
 # Kotlin
-kotlin = "1.9.23"
+kotlin = "1.9.22"
 
 # Kotlin serialization
-kotlin_serialization = "1.9.23"
+kotlinSerialization = "1.9.22"
 
 # Hilt
 hilt = "2.47"
 
 # Ksp
-ksp = "1.9.23-1.0.19"
+ksp = "1.9.22-1.0.17"
 
 # Core Ktx
-core_ktx = "1.12.0"
+coreKtx = "1.12.0"
 
 # Ktor
 ktor = "2.3.9"
 
-# Compose
-compose = '1.6.3'
-compose_material3 = '1.2.1'
+# Compose compiler
+composeCompiler = "1.5.10"
+
+# Compose BOM
+composeBom = "2024.02.02"
 
 # Material
 material = "1.11.0"
+lifecycleRuntimeKtx = "2.6.1"
+activityCompose = "1.7.0"
 
 [libraries]
 
 # Core Ktx
-androidx_core_ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core_ktx" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
 # Hilt
-dagger_hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-dagger_hilt_compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 
 # Ktor
-ktor_client_android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
-ktor_client_logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
-ktor_client_content_negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
-ktor_serialization_kotlinx_json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 # Compose
-compose_ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose_material3 = { module = "androidx.compose.material3:material3", version.ref = "compose_material3" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+compose-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 
 # Material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# Lifecycle
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+
 [plugins]
 
 # Android application
-application_plugin = { id = "com.android.application", version.ref = "gradle_plugin" }
+application-plugin = { id = "com.android.application", version.ref = "gradlePlugin" }
 
 # Android library
-android_library_plugin = { id = "com.android.library", version.ref = "gradle_plugin" }
+android-library-plugin = { id = "com.android.library", version.ref = "gradlePlugin" }
 
 # Kotlin Android
-kotlin_android_plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 # Kotlin serialization
-kotlin_serialization_plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin_serialization" }
+kotlin-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
 
 # Hilt
-hilt_plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 # Ksp
-ksp_plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
 
 # Ktor
-ktor_client = [
-    "ktor_client_android",
-    "ktor_client_logging",
-    "ktor_client_content_negotiation",
-    "ktor_serialization_kotlinx_json"
+ktor-client = [
+    "ktor-client-android",
+    "ktor-client-logging",
+    "ktor-client-content-negotiation",
+    "ktor-serialization-kotlinx-json"
 ]
 
 # Compose
 compose = [
-    "compose_ui",
-    "compose_material3"
+    "compose-activity",
+    "compose-google-fonts",
+    "compose-material3",
+    "compose-ui",
+    "compose-ui-graphics",
+    "compose-ui-tooling",
+    "compose-ui-tooling-preview"
 ]

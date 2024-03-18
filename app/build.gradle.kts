@@ -9,6 +9,14 @@ android {
     namespace = "fr.arrows.leaguepicker"
     compileSdk = 34
 
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
+
     defaultConfig {
         applicationId = "fr.arrows.leaguepicker"
         minSdk = 28
@@ -45,9 +53,14 @@ dependencies {
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
 
-    /* Compose */
-    implementation(libs.bundles.compose)
-
     /* Google Material themes */
     implementation(libs.material)
+
+    /* Compose */
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.tooling)
+
+    /* Lifecycle */
+    implementation(libs.lifecycle.runtime.ktx)
 }
