@@ -53,8 +53,8 @@ android {
 }
 
 dependencies {
-    /* Core Ktx */
-    implementation(libs.androidx.core.ktx)
+    /* Modules to import */
+    implementation(project(":domain"))
 
     /* Hilt */
     implementation(libs.dagger.hilt)

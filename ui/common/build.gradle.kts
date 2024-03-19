@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+    /* Modules to import */
+    implementation(project(":domain"))
+
     /* Core Ktx */
     implementation(libs.androidx.core.ktx)
 

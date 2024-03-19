@@ -45,6 +45,7 @@ android {
 
 dependencies {
     /* Modules to import */
+    implementation(project(":domain"))
     implementation(project(":ui:common"))
 
     /* Core Ktx */
