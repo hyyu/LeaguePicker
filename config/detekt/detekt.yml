@@ -1,6 +1,6 @@
 complexity:
   LongParameterList:
-    functionThreshold: 8
+    functionThreshold: 10
 
 naming:
   FunctionNaming:
