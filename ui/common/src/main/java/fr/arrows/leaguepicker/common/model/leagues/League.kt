@@ -1,6 +1,6 @@
 package fr.arrows.leaguepicker.common.model.leagues
 
-import fr.arrows.leaguepicker.domain.repository.entity.LeagueItemEntity
+import fr.arrows.leaguepicker.domain.leagues.entity.LeagueItemEntity
 
 data class League(
     val id: String,

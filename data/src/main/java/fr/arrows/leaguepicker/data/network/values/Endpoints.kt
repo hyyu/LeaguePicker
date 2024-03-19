@@ -6,5 +6,5 @@ object Endpoints {
     const val HOST = "www.thesportsdb.com/api/v1/json/${BuildConfig.SPORTS_API_KEY}"
 
     const val LEAGUES = "/all_leagues.php"
-    const val TEAMS = "/search_all_teams.php"
+    const val TEAMS = "/lookup_all_teams.php"
 }

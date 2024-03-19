@@ -1,4 +1,4 @@
-package fr.arrows.leaguepicker.common.compose.searchbar
+package fr.arrows.leaguepicker.common.compose.search
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
