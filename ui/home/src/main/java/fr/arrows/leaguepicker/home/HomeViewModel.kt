@@ -110,13 +110,14 @@ class HomeViewModel @Inject constructor(
                 result.getOrNull()?.teams?.map { itemEntity ->
                     itemEntity.toUiModel()
                 }
+                    ?.reversed()
                     ?.filterIndexed { i, _ -> i % 2 == 0 }
                     ?.let { models ->
-                    updateUi {
-                        isLoading = false
-                        teams = models
+                        updateUi {
+                            isLoading = false
+                            teams = models
+                        }
                     }
-                }
             }
         }
 
