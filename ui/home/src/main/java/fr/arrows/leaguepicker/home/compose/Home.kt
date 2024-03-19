@@ -17,7 +17,7 @@ fun Home(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val searchBarState by viewModel.searchBarState.collectAsState()
-    val searchItems by viewModel.itemsState.collectAsState()
+    val searchBarItems by viewModel.searchItemsState.collectAsState()
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(key1 = true) {
@@ -30,7 +30,7 @@ fun Home(
         snackbarState = viewModel.snackbarState,
         onShowSnackbar = { viewModel.snackbarDisplayed() },
         searchBarState = searchBarState,
-        searchBarItems = searchItems,
+        searchBarItems = searchBarItems,
         onSearchTextChanged = { text ->
             viewModel.launchEvent(HomeEvent.RefreshSearch(text))
         },

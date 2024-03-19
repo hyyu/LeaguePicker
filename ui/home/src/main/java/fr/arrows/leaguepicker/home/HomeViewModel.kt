@@ -1,9 +1,8 @@
 package fr.arrows.leaguepicker.home
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import fr.arrows.leaguepicker.common.compose.searchbar.SearchBarState
+import fr.arrows.leaguepicker.common.compose.search.SearchBarState
 import fr.arrows.leaguepicker.common.model.leagues.League
 import fr.arrows.leaguepicker.common.model.leagues.toUiModel
 import fr.arrows.leaguepicker.common.model.snackbar.SnackbarType
@@ -31,8 +30,8 @@ class HomeViewModel @Inject constructor(
     private val _searchBarState = MutableStateFlow(SearchBarState())
     val searchBarState = _searchBarState.asStateFlow()
 
-    private val _itemsState = MutableStateFlow<List<League>>(listOf())
-    val itemsState = _searchBarState.combine(_itemsState) { state, items ->
+    private val _searchItemsState = MutableStateFlow<List<League>>(listOf())
+    val searchItemsState = _searchBarState.combine(_searchItemsState) { state, items ->
         items.takeIf { state.text.isNotEmpty() }
             ?.filter { item ->
                 item.name
@@ -45,7 +44,7 @@ class HomeViewModel @Inject constructor(
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(TIMEOUT_FOR_STATEFLOW_COMBINE),
-        initialValue = _itemsState.value
+        initialValue = _searchItemsState.value
     )
 
     /* Events */
@@ -66,11 +65,11 @@ class HomeViewModel @Inject constructor(
 
         val result = interactor.fetchLeagues()
 
-        updateUi { isLoading = false }
+        updateUi {
+            isLoading = false
+        }
 
-        result.exceptionOrNull()?.let { cause ->
-            Log.e("HomeViewModel/fetchLeagues", "ERROR:")
-            Log.e("HomeViewModel/fetchLeagues", "${cause.message}")
+        result.exceptionOrNull()?.let {
             showSnackBar(
                 message = GENERIC_ERROR,
                 type = SnackbarType.Error
@@ -78,7 +77,12 @@ class HomeViewModel @Inject constructor(
         } ?: run {
             result.getOrNull()?.leagues?.map { itemEntity ->
                 itemEntity.toUiModel()
-            }?.let { models -> _itemsState.value = models.toList() }
+            }?.let { models ->
+                _searchItemsState.value = models
+                updateUi {
+                    leagues = models
+                }
+            }
         }
     }
 

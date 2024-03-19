@@ -1,4 +1,4 @@
-package fr.arrows.leaguepicker.common.compose.searchbar
+package fr.arrows.leaguepicker.common.compose.search
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -69,10 +69,7 @@ private fun SearchBarSuggestions(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onItemClicked(item.id) }
-                    .padding(
-                        horizontal = 8.dp,
-                        vertical = 16.dp
-                    )
+                    .padding(16.dp)
             ) {
                 SearchResult(
                     modifier = Modifier,
