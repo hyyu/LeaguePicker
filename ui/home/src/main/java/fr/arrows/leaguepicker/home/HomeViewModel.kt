@@ -72,7 +72,7 @@ class HomeViewModel @Inject constructor(
             Log.e("HomeViewModel/fetchLeagues", "ERROR:")
             Log.e("HomeViewModel/fetchLeagues", "${cause.message}")
             showSnackBar(
-                message = cause.message ?: GENERIC_ERROR_WHEN_FETCHING_LEAGUES,
+                message = GENERIC_ERROR,
                 type = SnackbarType.Error
             )
         } ?: run {
@@ -121,7 +121,7 @@ class HomeViewModel @Inject constructor(
 
     companion object {
         const val TIMEOUT_FOR_STATEFLOW_COMBINE = 5000L
-        const val GENERIC_ERROR_WHEN_FETCHING_LEAGUES = "An unknown error occurred. Please try again later"
+        const val GENERIC_ERROR = "An unknown error occurred. Please try again later"
     }
 
 }
