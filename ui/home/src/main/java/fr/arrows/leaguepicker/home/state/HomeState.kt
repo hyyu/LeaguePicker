@@ -17,7 +17,8 @@ data class HomeState(
         fun build(): HomeState =
             HomeState(
                 isLoading = isLoading,
-                leagues = teams
+                leagues = leagues,
+                teams = teams
             )
     }
 }

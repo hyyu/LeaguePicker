@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,28 +28,30 @@ internal fun HomeContent(
     state: HomeState,
     onItemClicked: (String) -> Unit
 ) {
-    if (state.isLoading) {
-        Loader(modifier = modifier)
-    } else {
-        state.leagues?.let {
-            LeaguesColumn(
-                modifier = modifier,
-                leagues = it,
-                onItemClicked = onItemClicked
-            )
-        }
-        state.teams?.let {
-            TeamsColumn(
-                modifier = modifier,
-                teams = it
-            )
+    Column(
+      modifier = modifier
+    ) {
+        if (state.isLoading) {
+            Loader(modifier = Modifier.fillMaxSize())
+        } else {
+            state.leagues?.let {
+                LeaguesColumn(
+                    leagues = it,
+                    onItemClicked = onItemClicked
+                )
+            }
+            state.teams?.let {
+                TeamsGrid(
+                    teams = it
+                )
+            }
         }
     }
 }
 
 @Composable
 private fun Loader(
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
@@ -61,7 +64,7 @@ private fun Loader(
 
 @Composable
 private fun LeaguesColumn(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     leagues: List<League>,
     onItemClicked: (String) -> Unit
 ) {
@@ -85,7 +88,7 @@ private fun LeaguesColumn(
 }
 
 @Composable
-private fun TeamsColumn(
+private fun TeamsGrid(
     modifier: Modifier = Modifier,
     teams: List<League>
 ) {
