@@ -17,7 +17,7 @@ fun Home(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val searchBarState by viewModel.searchBarState.collectAsState()
-    val searchItems by viewModel.itemsState.collectAsState()
+    val searchBarItems by viewModel.searchItemsState.collectAsState()
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(key1 = true) {
@@ -30,13 +30,14 @@ fun Home(
         snackbarState = viewModel.snackbarState,
         onShowSnackbar = { viewModel.snackbarDisplayed() },
         searchBarState = searchBarState,
-        searchBarItems = searchItems,
+        searchBarItems = searchBarItems,
         onSearchTextChanged = { text ->
             viewModel.launchEvent(HomeEvent.RefreshSearch(text))
         },
         onActiveChanged = { viewModel.launchEvent(HomeEvent.ToggleSearch) },
         onSearchBarIconClicked = { viewModel.launchEvent(HomeEvent.ToggleSearch) },
         onSearchItemClicked = { itemId ->
+            viewModel.launchEvent(HomeEvent.ClearSearchBar)
             viewModel.launchEvent(HomeEvent.FetchTeamsFromLeagueId(itemId))
         },
     ) { innerPadding ->
@@ -44,7 +45,11 @@ fun Home(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            state = uiState
+            state = uiState,
+            onItemClicked = { itemId ->
+                viewModel.launchEvent(HomeEvent.ClearSearchBar)
+                viewModel.launchEvent(HomeEvent.FetchTeamsFromLeagueId(itemId))
+            }
         )
     }
 }

@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import fr.arrows.leaguepicker.common.compose.searchbar.LeaguePickerSearchBar
-import fr.arrows.leaguepicker.common.compose.searchbar.SearchBarState
+import fr.arrows.leaguepicker.common.compose.search.LeaguePickerSearchBar
+import fr.arrows.leaguepicker.common.compose.search.SearchBarState
 import fr.arrows.leaguepicker.common.compose.snackbar.LeaguePickerSnackbar
 import fr.arrows.leaguepicker.common.model.leagues.League
 
@@ -58,5 +58,4 @@ internal fun FrameContent(
         },
         content = content
     )
-
 }

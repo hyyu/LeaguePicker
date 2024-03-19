@@ -1,7 +1,7 @@
 [versions]
 
 # AGP
-gradlePlugin = "8.3.0"
+gradlePlugin = "8.3.1"
 
 # Kotlin
 kotlin = "1.9.22"
