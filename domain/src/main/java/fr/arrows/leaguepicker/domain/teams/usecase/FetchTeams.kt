@@ -7,7 +7,7 @@ import javax.inject.Inject
 class FetchTeams @Inject constructor(
     private val fetchTeamsRepository: FetchTeamsRepository
 ) {
-    suspend operator fun invoke(): Result<FetchTeamsEntity> =
-        fetchTeamsRepository.fetchTeams()
+    suspend operator fun invoke(leagueId: String): Result<FetchTeamsEntity> =
+        fetchTeamsRepository.fetchTeams(leagueId)
 
 }
