@@ -1,7 +1,7 @@
 package fr.arrows.leaguepicker.domain.teams.entity
 
 interface FetchTeamsEntity {
-    val leagues: List<TeamItemEntity>
+    val teams: List<TeamItemEntity>
 }
 
 interface TeamItemEntity {
