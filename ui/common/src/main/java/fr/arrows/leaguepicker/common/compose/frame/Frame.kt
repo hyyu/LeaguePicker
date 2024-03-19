@@ -134,7 +134,7 @@ private fun LeaguePickerSearchBar(
     SearchBar(
         modifier = Modifier
             .padding(8.dp)
-            .clip(shape = RoundedCornerShape(20.dp)),
+            .clip(shape = RoundedCornerShape(25.dp)),
         query = searchBarState.text,
         onQueryChange = onSearchTextChanged,
         onSearch = onSearchTextChanged,
@@ -152,10 +152,21 @@ private fun LeaguePickerSearchBar(
             }
         }
     ) {
-        LazyColumn {
-            items(searchBarItems) { item ->
-                SearchResult(text = item.name)
-            }
-        }
+        SearchBarSuggestions(searchBarItems = searchBarItems)
     }
 }
+
+@Composable
+private fun SearchBarSuggestions(searchBarItems: List<League>) {
+    LazyColumn {
+        items(searchBarItems) { item ->
+            SearchResult(
+                modifier = Modifier.padding(
+                    horizontal = 8.dp,
+                    vertical = 16.dp
+                ),
+                text = item.name
+            )
+        }
+    }
+} 
