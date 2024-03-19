@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import fr.arrows.leaguepicker.data.repository.leagues.FetchLeaguesRepositoryImpl
-import fr.arrows.leaguepicker.domain.repository.leagues.FetchLeaguesRepository
+import fr.arrows.leaguepicker.domain.leagues.repository.FetchLeaguesRepository
 import io.ktor.client.HttpClient
 import javax.inject.Singleton
 

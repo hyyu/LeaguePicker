@@ -1,6 +1,6 @@
-package fr.arrows.leaguepicker.domain.repository.entity
+package fr.arrows.leaguepicker.domain.leagues.entity
 
-interface FetchLeagueEntity {
+interface FetchLeaguesEntity {
     val leagues: List<LeagueItemEntity>
 }
 

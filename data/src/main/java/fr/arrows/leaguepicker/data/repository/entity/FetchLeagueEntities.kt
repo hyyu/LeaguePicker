@@ -1,7 +1,7 @@
 package fr.arrows.leaguepicker.data.repository.entity
 
-import fr.arrows.leaguepicker.domain.repository.entity.FetchLeagueEntity
-import fr.arrows.leaguepicker.domain.repository.entity.LeagueItemEntity
+import fr.arrows.leaguepicker.domain.leagues.entity.FetchLeaguesEntity
+import fr.arrows.leaguepicker.domain.leagues.entity.LeagueItemEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 data class FetchLeagueEntityImpl(
     @SerialName("leagues")
     override val leagues: List<LeagueItemEntityImpl>
-) : FetchLeagueEntity
+) : FetchLeaguesEntity
 
 @Serializable
 data class LeagueItemEntityImpl(
