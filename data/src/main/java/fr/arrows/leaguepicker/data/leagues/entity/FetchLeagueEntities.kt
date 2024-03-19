@@ -1,4 +1,4 @@
-package fr.arrows.leaguepicker.data.repository.entity
+package fr.arrows.leaguepicker.data.leagues.entity
 
 import fr.arrows.leaguepicker.domain.leagues.entity.FetchLeaguesEntity
 import fr.arrows.leaguepicker.domain.leagues.entity.LeagueItemEntity

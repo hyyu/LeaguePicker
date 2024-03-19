@@ -1,7 +1,7 @@
-package fr.arrows.leaguepicker.data.repository.leagues
+package fr.arrows.leaguepicker.data.leagues.repository
 
 import fr.arrows.leaguepicker.data.network.values.Endpoints
-import fr.arrows.leaguepicker.data.repository.entity.FetchLeagueEntityImpl
+import fr.arrows.leaguepicker.data.leagues.entity.FetchLeagueEntityImpl
 import fr.arrows.leaguepicker.domain.leagues.entity.FetchLeaguesEntity
 import fr.arrows.leaguepicker.domain.leagues.repository.FetchLeaguesRepository
 import io.ktor.client.HttpClient
