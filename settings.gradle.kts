@@ -30,3 +30,4 @@ include(
     ":navigation",
     ":ui:home"
 )
+include(":ui:common")

@@ -1,3 +1,9 @@
+complexity:
+  LongParameterList:
+    functionThreshold: 6
+    ignoreAnnotated:
+      - 'Composable'
+
 naming:
   FunctionNaming:
     active: true

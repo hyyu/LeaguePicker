@@ -1,11 +1,21 @@
 plugins {
     alias(libs.plugins.android.library.plugin)
     alias(libs.plugins.kotlin.android.plugin)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
     namespace = "fr.arrows.leaguepicker.home"
     compileSdk = 34
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
 
     defaultConfig {
         minSdk = 28
@@ -34,5 +44,19 @@ android {
 }
 
 dependencies {
+    /* Modules to import */
+    implementation(project(":domain"))
+    implementation(project(":ui:common"))
+
+    /* Core Ktx */
     implementation(libs.androidx.core.ktx)
+
+    /* Hilt */
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
+
+    /* Compose */
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.tooling)
 }

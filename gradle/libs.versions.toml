@@ -10,7 +10,8 @@ kotlin = "1.9.22"
 kotlinSerialization = "1.9.22"
 
 # Hilt
-hilt = "2.47"
+hilt = "2.50"
+hiltNavigation = "1.2.0"
 
 # Ksp
 ksp = "1.9.22-1.0.17"
@@ -27,10 +28,17 @@ composeCompiler = "1.5.10"
 # Compose BOM
 composeBom = "2024.02.02"
 
+# Compose activity
+composeActivity = "1.8.2"
+
+# Compose navigation
+composeNavigation = "2.7.7"
+
 # Material
 material = "1.11.0"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.7.0"
+
+# Lifecycle runtime
+lifecycleRuntimeKtx = "2.7.0"
 
 [libraries]
 
@@ -40,6 +48,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 # Hilt
 dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+dagger-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
 
 # Ktor
 ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
@@ -49,9 +58,10 @@ ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serializatio
 
 # Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
 compose-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
@@ -98,8 +108,10 @@ compose = [
     "compose-activity",
     "compose-google-fonts",
     "compose-material3",
+    "compose-navigation",
     "compose-ui",
     "compose-ui-graphics",
     "compose-ui-tooling",
-    "compose-ui-tooling-preview"
+    "compose-ui-tooling-preview",
+    "dagger-hilt-navigation"
 ]
