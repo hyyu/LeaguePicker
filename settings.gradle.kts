@@ -31,3 +31,4 @@ include(
     ":navigation",
     ":app"
 )
+include(":ui:common")
