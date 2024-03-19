@@ -2,6 +2,7 @@ package fr.arrows.leaguepicker.home.compose
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -17,6 +18,10 @@ fun Home(
     val searchBarState by viewModel.searchBarState.collectAsState()
     val searchItems by viewModel.itemsState.collectAsState()
 
+    LaunchedEffect(key1 = true) {
+        viewModel.launchEvent(HomeEvent.FetchLeagues)
+    }
+
     Frame(
         modifier = Modifier
             .fillMaxSize(),
@@ -24,9 +29,9 @@ fun Home(
         onShowSnackbar = { viewModel.snackbarDisplayed() },
         searchBarState = searchBarState,
         searchBarItems = searchItems,
-        onSearchTextChanged = { viewModel.launchEvent(HomeEvent.RefreshSearch(searchBarState.text)) },
-        onActiveChanged = { viewModel.launchEvent(HomeEvent.ToggleSearch) }
-    ) { paddingValues ->
-    }
-
+        onSearchTextChanged = { viewModel.launchEvent(HomeEvent.RefreshSearch(it)) },
+        onActiveChanged = { viewModel.launchEvent(HomeEvent.ToggleSearch) },
+        onSearchBarIconClicked = { viewModel.launchEvent(HomeEvent.ToggleSearch) },
+        content = {}
+    )
 }
