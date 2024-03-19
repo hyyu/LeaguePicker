@@ -1,6 +1,5 @@
 package fr.arrows.leaguepicker.common.model.teams
 
-import fr.arrows.leaguepicker.domain.leagues.entity.LeagueItemEntity
 import fr.arrows.leaguepicker.domain.teams.entity.TeamItemEntity
 
 data class Team(

@@ -6,6 +6,7 @@ import fr.arrows.leaguepicker.common.compose.search.SearchBarState
 import fr.arrows.leaguepicker.common.model.leagues.League
 import fr.arrows.leaguepicker.common.model.leagues.toUiModel
 import fr.arrows.leaguepicker.common.model.snackbar.SnackbarType
+import fr.arrows.leaguepicker.common.model.teams.toUiModel
 import fr.arrows.leaguepicker.common.viewmodel.BaseViewModel
 import fr.arrows.leaguepicker.home.event.HomeEvent
 import fr.arrows.leaguepicker.home.interactor.HomeInteractor
@@ -62,25 +63,27 @@ class HomeViewModel @Inject constructor(
     /* Leagues */
 
     private fun fetchLeagues() = viewModelScope.launch {
-        updateUi { isLoading = true }
+        updateUi {
+            isLoading = true
+            leagues = null
+            teams = null
+        }
 
         val result = interactor.fetchLeagues()
-
-        updateUi {
-            isLoading = false
-        }
 
         result.exceptionOrNull()?.let {
             showSnackBar(
                 message = GENERIC_ERROR,
                 type = SnackbarType.Error
             )
+            updateUi { isLoading = false }
         } ?: run {
             result.getOrNull()?.leagues?.map { itemEntity ->
                 itemEntity.toUiModel()
             }?.let { models ->
                 _searchItemsState.value = models
                 updateUi {
+                    isLoading = false
                     leagues = models
                 }
             }
@@ -89,7 +92,30 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchTeamsFromLeagueId(leagueId: String) =
         viewModelScope.launch {
+            updateUi {
+                isLoading = true
+                leagues = null
+                teams = null
+            }
 
+            val result = interactor.fetchTeams(leagueId)
+
+            result.exceptionOrNull()?.let {
+                showSnackBar(
+                    message = GENERIC_ERROR,
+                    type = SnackbarType.Error
+                )
+                updateUi { isLoading = false }
+            } ?: run {
+                result.getOrNull()?.teams?.map { itemEntity ->
+                    itemEntity.toUiModel()
+                }?.let { models ->
+                    updateUi {
+                        isLoading = false
+                        teams = models
+                    }
+                }
+            }
         }
 
     private fun onSearchToggled() =

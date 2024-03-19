@@ -1,11 +1,12 @@
 package fr.arrows.leaguepicker.home.state
 
 import fr.arrows.leaguepicker.common.model.leagues.League
+import fr.arrows.leaguepicker.common.model.teams.Team
 
 data class HomeState(
     val isLoading: Boolean = false,
     val leagues: List<League>? = null,
-    val teams: List<League>? = null
+    val teams: List<Team>? = null
 ) {
     fun build(block: Builder.() -> Unit) = Builder(HomeState()).apply(block).build()
 

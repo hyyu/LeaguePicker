@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import fr.arrows.leaguepicker.common.model.leagues.League
+import fr.arrows.leaguepicker.common.model.teams.Team
 import fr.arrows.leaguepicker.home.compose.values.HomeValues
 import fr.arrows.leaguepicker.home.state.HomeState
 
@@ -90,15 +91,23 @@ private fun LeaguesColumn(
 @Composable
 private fun TeamsGrid(
     modifier: Modifier = Modifier,
-    teams: List<League>
+    teams: List<Team>
 ) {
     LazyVerticalGrid(
         modifier = modifier,
         columns = GridCells.Fixed(HomeValues.NUMBER_OF_TEAM_COLUMNS)
     ) {
-        items(teams) {team ->
-            // TODO Change model type when teams will be implemented
-            // TODO Composable for a team item cell
+        items(teams) {item ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    modifier = modifier,
+                    text = item.name
+                )
+            }
         }
     }
 }
