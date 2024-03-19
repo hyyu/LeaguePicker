@@ -80,7 +80,6 @@ fun Frame(
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun FrameContent(
     modifier: Modifier,
@@ -96,37 +95,19 @@ private fun FrameContent(
         modifier = modifier,
         topBar = {
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                SearchBar(
-                    modifier = Modifier.padding(8.dp)
-                        .clip(shape = RoundedCornerShape(20.dp)),
-                    query = searchBarState.text,
-                    onQueryChange = onSearchTextChanged,
-                    onSearch = onSearchTextChanged,
-                    active = searchBarState.isSearching,
-                    onActiveChange = onActiveChanged,
-                    trailingIcon = {
-                        if (searchBarState.isSearching) {
-                            IconButton(onClick = onSearchBarIconClicked) {
-                                Icon(
-                                    painter = painterResource(drawable.ic_cancel),
-                                    contentDescription = "Filter",
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
-                            }
-                        }
-                    }
-                ) {
-                    LazyColumn {
-                        items(searchBarItems) { item ->
-                            SearchResult(text = item.name)
-                        }
-                    }
-                }
+                LeaguePickerSearchBar(
+                    searchBarState = searchBarState,
+                    searchBarItems = searchBarItems,
+                    onSearchTextChanged = onSearchTextChanged,
+                    onActiveChanged = onActiveChanged,
+                    onSearchBarIconClicked = onSearchBarIconClicked,
+                )
             }
         },
         snackbarHost = {
@@ -139,4 +120,42 @@ private fun FrameContent(
         content = content
     )
 
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LeaguePickerSearchBar(
+    searchBarState: SearchBarState,
+    searchBarItems: List<League>,
+    onSearchTextChanged: (String) -> Unit,
+    onActiveChanged: (Boolean) -> Unit,
+    onSearchBarIconClicked: () -> Unit
+) {
+    SearchBar(
+        modifier = Modifier
+            .padding(8.dp)
+            .clip(shape = RoundedCornerShape(20.dp)),
+        query = searchBarState.text,
+        onQueryChange = onSearchTextChanged,
+        onSearch = onSearchTextChanged,
+        active = searchBarState.isSearching,
+        onActiveChange = onActiveChanged,
+        trailingIcon = {
+            if (searchBarState.isSearching) {
+                IconButton(onClick = onSearchBarIconClicked) {
+                    Icon(
+                        painter = painterResource(drawable.ic_cancel),
+                        contentDescription = "Filter",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+        }
+    ) {
+        LazyColumn {
+            items(searchBarItems) { item ->
+                SearchResult(text = item.name)
+            }
+        }
+    }
 }
