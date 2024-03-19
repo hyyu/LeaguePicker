@@ -37,6 +37,7 @@ fun Home(
         onActiveChanged = { viewModel.launchEvent(HomeEvent.ToggleSearch) },
         onSearchBarIconClicked = { viewModel.launchEvent(HomeEvent.ToggleSearch) },
         onSearchItemClicked = { itemId ->
+            viewModel.launchEvent(HomeEvent.ClearSearchBar)
             viewModel.launchEvent(HomeEvent.FetchTeamsFromLeagueId(itemId))
         },
     ) { innerPadding ->
@@ -46,6 +47,7 @@ fun Home(
                 .padding(innerPadding),
             state = uiState,
             onItemClicked = { itemId ->
+                viewModel.launchEvent(HomeEvent.ClearSearchBar)
                 viewModel.launchEvent(HomeEvent.FetchTeamsFromLeagueId(itemId))
             }
         )

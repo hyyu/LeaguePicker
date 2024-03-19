@@ -53,6 +53,7 @@ class HomeViewModel @Inject constructor(
         when (event) {
             is HomeEvent.RefreshSearch -> onSearchTextChanged(text = event.text)
             HomeEvent.ToggleSearch -> onSearchToggled()
+            HomeEvent.ClearSearchBar -> clearSearchBar()
             HomeEvent.FetchLeagues -> fetchLeagues()
             is HomeEvent.FetchTeamsFromLeagueId -> fetchTeamsFromLeagueId(event.id)
         }
@@ -106,6 +107,13 @@ class HomeViewModel @Inject constructor(
                     )
                 }
             }
+
+    private fun clearSearchBar() {
+        _searchBarState.value = SearchBarState(
+            isSearching = false,
+            text = _searchBarState.value.text
+        )
+    }
 
     private fun onSearchTextChanged(
         isSearching: Boolean = _searchBarState.value.isSearching,
