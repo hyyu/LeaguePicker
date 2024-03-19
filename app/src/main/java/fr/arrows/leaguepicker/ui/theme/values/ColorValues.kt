@@ -32,7 +32,7 @@ object ColorValues {
     const val GRAY_06 = 0xFF16130E
     const val GRAY_10 = 0xFF1F1B16
     const val GRAY_90 = 0xFFEAE1D9
-    const val GRAY_98 = 0xFF16130E
+    const val GRAY_98 = 0xFFFFF8F3
 
     const val WHITE = 0xFFFAFAFA
 }
