@@ -1,22 +1,117 @@
 [versions]
-agp = "8.3.0"
-kotlin = "1.9.0"
-coreKtx = "1.10.1"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-appcompat = "1.6.1"
-material = "1.10.0"
+
+# AGP
+gradlePlugin = "8.3.0"
+
+# Kotlin
+kotlin = "1.9.22"
+
+# Kotlin serialization
+kotlinSerialization = "1.9.22"
+
+# Hilt
+hilt = "2.50"
+hiltNavigation = "1.2.0"
+
+# Ksp
+ksp = "1.9.22-1.0.17"
+
+# Core Ktx
+coreKtx = "1.12.0"
+
+# Ktor
+ktor = "2.3.9"
+
+# Compose compiler
+composeCompiler = "1.5.10"
+
+# Compose BOM
+composeBom = "2024.02.02"
+
+# Compose activity
+composeActivity = "1.8.2"
+
+# Compose navigation
+composeNavigation = "2.7.7"
+
+# Material
+material = "1.11.0"
+
+# Lifecycle runtime
+lifecycleRuntimeKtx = "2.7.0"
 
 [libraries]
+
+# Core Ktx
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+# Hilt
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+dagger-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
+
+# Ktor
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Compose
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+compose-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+# Material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
-[plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+# Lifecycle
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 
+[plugins]
+
+# Android application
+application-plugin = { id = "com.android.application", version.ref = "gradlePlugin" }
+
+# Android library
+android-library-plugin = { id = "com.android.library", version.ref = "gradlePlugin" }
+
+# Kotlin Android
+kotlin-android-plugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+# Kotlin serialization
+kotlin-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
+
+# Hilt
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+# Ksp
+ksp-plugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+[bundles]
+
+# Ktor
+ktor-client = [
+    "ktor-client-android",
+    "ktor-client-logging",
+    "ktor-client-content-negotiation",
+    "ktor-serialization-kotlinx-json"
+]
+
+# Compose
+compose = [
+    "compose-activity",
+    "compose-google-fonts",
+    "compose-material3",
+    "compose-navigation",
+    "compose-ui",
+    "compose-ui-graphics",
+    "compose-ui-tooling",
+    "compose-ui-tooling-preview",
+    "dagger-hilt-navigation"
+]

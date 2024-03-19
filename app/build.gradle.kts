@@ -1,11 +1,21 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.application.plugin)
+    alias(libs.plugins.kotlin.android.plugin)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.ksp.plugin)
 }
 
 android {
     namespace = "fr.arrows.leaguepicker"
     compileSdk = 34
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
 
     defaultConfig {
         applicationId = "fr.arrows.leaguepicker"
@@ -13,8 +23,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,21 +34,40 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+
 }
 
 dependencies {
 
+    /* Modules to import */
+    implementation(project(":data"))
+    implementation(project(":navigation"))
+    implementation(project(":ui:common"))
+    implementation(project(":ui:home"))
+
+    /* Core Ktx */
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+
+    /* Hilt */
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
+
+    /* Google Material themes */
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+
+    /* Compose */
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.compose.ui.tooling)
+
+    /* Lifecycle */
+    implementation(libs.lifecycle.runtime.ktx)
 }
