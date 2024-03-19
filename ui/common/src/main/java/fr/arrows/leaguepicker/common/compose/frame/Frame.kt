@@ -18,6 +18,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import fr.arrows.leaguepicker.common.compose.searchbar.SearchBarState
+import fr.arrows.leaguepicker.common.compose.searchbar.SearchResult
 import fr.arrows.leaguepicker.common.compose.snackbar.LeaguePickerSnackbar
 import fr.arrows.leaguepicker.common.model.searchbar.SearchBarItem
 import fr.arrows.leaguepicker.common.model.snackbar.LeaguepickerSnackbarData
@@ -90,15 +91,7 @@ private fun FrameContent(
             ) {
                 LazyColumn {
                     items(searchBarItems) { item ->
-                        Text(
-                            modifier = Modifier.padding(
-                                start = 8.dp,
-                                top = 4.dp,
-                                end = 8.dp,
-                                bottom = 4.dp
-                            ),
-                            text = item.text
-                        )
+                        SearchResult(text = item.text)
                     }
                 }
             }
