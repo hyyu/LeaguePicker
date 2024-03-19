@@ -1,12 +1,12 @@
 package fr.arrows.leaguepicker.home
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import fr.arrows.leaguepicker.common.compose.searchbar.SearchBarState
+import fr.arrows.leaguepicker.common.compose.search.SearchBarState
 import fr.arrows.leaguepicker.common.model.leagues.League
 import fr.arrows.leaguepicker.common.model.leagues.toUiModel
 import fr.arrows.leaguepicker.common.model.snackbar.SnackbarType
+import fr.arrows.leaguepicker.common.model.teams.toUiModel
 import fr.arrows.leaguepicker.common.viewmodel.BaseViewModel
 import fr.arrows.leaguepicker.home.event.HomeEvent
 import fr.arrows.leaguepicker.home.interactor.HomeInteractor
@@ -31,8 +31,8 @@ class HomeViewModel @Inject constructor(
     private val _searchBarState = MutableStateFlow(SearchBarState())
     val searchBarState = _searchBarState.asStateFlow()
 
-    private val _itemsState = MutableStateFlow<List<League>>(listOf())
-    val itemsState = _searchBarState.combine(_itemsState) { state, items ->
+    private val _searchItemsState = MutableStateFlow<List<League>>(listOf())
+    val searchItemsState = _searchBarState.combine(_searchItemsState) { state, items ->
         items.takeIf { state.text.isNotEmpty() }
             ?.filter { item ->
                 item.name
@@ -45,7 +45,7 @@ class HomeViewModel @Inject constructor(
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(TIMEOUT_FOR_STATEFLOW_COMBINE),
-        initialValue = _itemsState.value
+        initialValue = _searchItemsState.value
     )
 
     /* Events */
@@ -54,6 +54,7 @@ class HomeViewModel @Inject constructor(
         when (event) {
             is HomeEvent.RefreshSearch -> onSearchTextChanged(text = event.text)
             HomeEvent.ToggleSearch -> onSearchToggled()
+            HomeEvent.ClearSearchBar -> clearSearchBar()
             HomeEvent.FetchLeagues -> fetchLeagues()
             is HomeEvent.FetchTeamsFromLeagueId -> fetchTeamsFromLeagueId(event.id)
         }
@@ -62,29 +63,61 @@ class HomeViewModel @Inject constructor(
     /* Leagues */
 
     private fun fetchLeagues() = viewModelScope.launch {
-        updateUi { isLoading = true }
+        updateUi {
+            isLoading = true
+            leagues = null
+            teams = null
+        }
 
         val result = interactor.fetchLeagues()
 
-        updateUi { isLoading = false }
-
-        result.exceptionOrNull()?.let { cause ->
-            Log.e("HomeViewModel/fetchLeagues", "ERROR:")
-            Log.e("HomeViewModel/fetchLeagues", "${cause.message}")
+        result.exceptionOrNull()?.let {
             showSnackBar(
-                message = cause.message ?: GENERIC_ERROR_WHEN_FETCHING_LEAGUES,
+                message = GENERIC_ERROR,
                 type = SnackbarType.Error
             )
+            updateUi { isLoading = false }
         } ?: run {
             result.getOrNull()?.leagues?.map { itemEntity ->
                 itemEntity.toUiModel()
-            }?.let { models -> _itemsState.value = models.toList() }
+            }?.let { models ->
+                _searchItemsState.value = models
+                updateUi {
+                    isLoading = false
+                    leagues = models
+                }
+            }
         }
     }
 
     private fun fetchTeamsFromLeagueId(leagueId: String) =
         viewModelScope.launch {
+            updateUi {
+                isLoading = true
+                leagues = null
+                teams = null
+            }
 
+            val result = interactor.fetchTeams(leagueId)
+
+            result.exceptionOrNull()?.let {
+                showSnackBar(
+                    message = GENERIC_ERROR,
+                    type = SnackbarType.Error
+                )
+                updateUi { isLoading = false }
+            } ?: run {
+                result.getOrNull()?.teams?.map { itemEntity ->
+                    itemEntity.toUiModel()
+                }
+                    ?.filterIndexed { i, _ -> i % 2 == 0 }
+                    ?.let { models ->
+                    updateUi {
+                        isLoading = false
+                        teams = models
+                    }
+                }
+            }
         }
 
     private fun onSearchToggled() =
@@ -102,6 +135,13 @@ class HomeViewModel @Inject constructor(
                     )
                 }
             }
+
+    private fun clearSearchBar() {
+        _searchBarState.value = SearchBarState(
+            isSearching = false,
+            text = _searchBarState.value.text
+        )
+    }
 
     private fun onSearchTextChanged(
         isSearching: Boolean = _searchBarState.value.isSearching,
@@ -121,7 +161,7 @@ class HomeViewModel @Inject constructor(
 
     companion object {
         const val TIMEOUT_FOR_STATEFLOW_COMBINE = 5000L
-        const val GENERIC_ERROR_WHEN_FETCHING_LEAGUES = "An unknown error occurred. Please try again later"
+        const val GENERIC_ERROR = "An unknown error occurred. Please try again later"
     }
 
 }

@@ -8,7 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import fr.arrows.leaguepicker.common.compose.searchbar.SearchBarState
+import fr.arrows.leaguepicker.common.compose.search.SearchBarState
 import fr.arrows.leaguepicker.common.model.leagues.League
 import fr.arrows.leaguepicker.common.model.snackbar.LeaguepickerSnackbarData
 import kotlinx.coroutines.flow.StateFlow
