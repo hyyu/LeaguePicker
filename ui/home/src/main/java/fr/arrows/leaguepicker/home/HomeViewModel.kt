@@ -55,6 +55,7 @@ class HomeViewModel @Inject constructor(
             is HomeEvent.RefreshSearch -> onSearchTextChanged(text = event.text)
             HomeEvent.ToggleSearch -> onSearchToggled()
             HomeEvent.FetchLeagues -> fetchLeagues()
+            is HomeEvent.FetchTeamsFromLeagueId -> fetchTeamsFromLeagueId(event.id)
         }
     }
 
@@ -80,6 +81,11 @@ class HomeViewModel @Inject constructor(
             }?.let { models -> _itemsState.value = models.toList() }
         }
     }
+
+    private fun fetchTeamsFromLeagueId(leagueId: String) =
+        viewModelScope.launch {
+
+        }
 
     private fun onSearchToggled() =
         _searchBarState.value.isSearching.not()
@@ -107,7 +113,7 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    /* Launch flow collection */
+    /* Launch stateFlow collection */
 
     private fun updateUi(block: HomeState.Builder.() -> Unit) {
         _uiState.value = _uiState.value.build(block)
