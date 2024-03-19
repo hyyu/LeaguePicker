@@ -24,7 +24,6 @@ import fr.arrows.leaguepicker.home.state.HomeState
 @Composable
 internal fun HomeContent(
     modifier: Modifier,
-    state: HomeState
     state: HomeState,
     onItemClicked: (String) -> Unit
 ) {
@@ -36,6 +35,12 @@ internal fun HomeContent(
                 modifier = modifier,
                 leagues = it,
                 onItemClicked = onItemClicked
+            )
+        }
+        state.teams?.let {
+            TeamsColumn(
+                modifier = modifier,
+                teams = it
             )
         }
     }
@@ -50,10 +55,6 @@ private fun Loader(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        state.takeIf { it.isLoading }
-            ?.let {
-                CircularProgressIndicator()
-            }
         CircularProgressIndicator()
     }
 }
@@ -83,5 +84,18 @@ private fun LeaguesColumn(
     }
 }
 
+@Composable
+private fun TeamsColumn(
+    modifier: Modifier = Modifier,
+    teams: List<League>
+) {
+    LazyVerticalGrid(
+        modifier = modifier,
+        columns = GridCells.Fixed(HomeValues.NUMBER_OF_TEAM_COLUMNS)
+    ) {
+        items(teams) {team ->
+            // TODO Change model type when teams will be implemented
+            // TODO Composable for a team item cell
+        }
     }
 }

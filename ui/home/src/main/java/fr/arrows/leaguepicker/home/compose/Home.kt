@@ -44,7 +44,10 @@ fun Home(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            state = uiState
+            state = uiState,
+            onItemClicked = { itemId ->
+                viewModel.launchEvent(HomeEvent.FetchTeamsFromLeagueId(itemId))
+            }
         )
     }
 }
