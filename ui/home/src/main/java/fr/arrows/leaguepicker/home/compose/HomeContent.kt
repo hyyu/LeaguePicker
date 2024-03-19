@@ -17,7 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import fr.arrows.leaguepicker.common.model.leagues.League
 import fr.arrows.leaguepicker.common.model.teams.Team
 import fr.arrows.leaguepicker.home.compose.values.HomeValues
@@ -98,16 +100,31 @@ private fun TeamsGrid(
         columns = GridCells.Fixed(HomeValues.NUMBER_OF_TEAM_COLUMNS)
     ) {
         items(teams) {item ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(
-                    modifier = modifier,
-                    text = item.name
-                )
-            }
+            TeamCell(
+                modifier = Modifier.padding(16.dp),
+                item = item
+            )
         }
+    }
+}
+
+@Composable
+private fun TeamCell(
+    modifier: Modifier = Modifier,
+    item: Team
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        AsyncImage(
+            model = item.badgeUrl,
+            contentDescription = "${item.name} badge"
+        )
+        Text(
+            modifier = modifier,
+            text = item.name,
+            textAlign = TextAlign.Center
+        )
     }
 }

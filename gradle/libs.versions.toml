@@ -40,6 +40,9 @@ material = "1.11.0"
 # Lifecycle runtime
 lifecycleRuntimeKtx = "2.7.0"
 
+# Coil
+coil = "2.6.0"
+
 [libraries]
 
 # Core Ktx
@@ -72,6 +75,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 
 # Lifecycle
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+
+# Coil
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 [plugins]
 
