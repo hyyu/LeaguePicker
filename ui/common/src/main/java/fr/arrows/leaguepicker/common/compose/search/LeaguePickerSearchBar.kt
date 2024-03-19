@@ -32,6 +32,7 @@ fun LeaguePickerSearchBar(
 ) {
     SearchBar(
         modifier = Modifier
+            .fillMaxWidth()
             .padding(8.dp)
             .clip(shape = RoundedCornerShape(25.dp)),
         query = searchBarState.text,
