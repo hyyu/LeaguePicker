@@ -6,6 +6,16 @@ plugins {
 }
 
 android {
+
+    project.tasks {
+        preBuild {
+            dependsOn(":data:build")
+            dependsOn(":ui:common:build")
+            dependsOn(":ui:home:build")
+            dependsOn(":navigation:build")
+        }
+    }
+
     namespace = "fr.arrows.leaguepicker"
     compileSdk = 34
 

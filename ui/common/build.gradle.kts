@@ -6,6 +6,13 @@ plugins {
 }
 
 android {
+
+    project.tasks {
+        preBuild {
+            dependsOn(":domain:build")
+        }
+    }
+
     namespace = "fr.arrows.leaguepicker.common"
     compileSdk = 34
 
